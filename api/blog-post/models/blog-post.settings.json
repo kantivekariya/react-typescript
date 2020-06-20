@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blog_posts",
+  "info": {
+    "name": "Blog Post"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "cover": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "author": {
+      "plugin": "users-permissions",
+      "collection": "user"
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "blog.quote",
+        "blog.slider",
+        "blog.rich-text"
+      ]
+    },
+    "Meta": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blog.meta"
+    },
+    "category": {
+      "model": "category"
+    }
+  }
+}
